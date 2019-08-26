@@ -26,17 +26,16 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 isGrounded = false;
-                rb.AddForce(new Vector3(0, 1, 0) * jumpForce);
+                rb.AddForce(Vector3.up * jumpForce);
             }
         }
         float rotationVar = Input.GetAxis("Horizontal");
         float forward = Input.GetAxis("Vertical");
 
         Vector3 moveVector = forward * transform.forward;
-        Vector3 dirVector = new Vector3(0, rotationVar, 0);
+        Vector3 dirVector = rotationVar * transform.right;
 
-        transform.Rotate(dirVector * spinSpeed);
-        transform.position = Vector3.Lerp(this.transform.position, this.transform.position + moveVector, Time.deltaTime * moveSpeed);
+        transform.position = Vector3.Lerp(this.transform.position, this.transform.position + moveVector + dirVector, Time.deltaTime * moveSpeed);
 
 
 
