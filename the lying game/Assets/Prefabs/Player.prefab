@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3987935233451909279}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: -0.0025482178
-      value: 1.0115645
+      value: 1.0067427
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -77,13 +77,13 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.78338623
-      value: -0.0079422
-      inSlope: 0
-      outSlope: 0
+      time: 0.6512958
+      value: -0.00315094
+      inSlope: -0.16377388
+      outSlope: -0.16377388
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.08998383
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
