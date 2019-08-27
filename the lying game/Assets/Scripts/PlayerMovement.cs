@@ -5,52 +5,63 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public float moveSpeed = 1f;
-    public float spinSpeed = 1f;
-    public float jumpForce = 1f;
+    [SerializeField] private float moveSpeed = 1f;
+    [SerializeField] private AnimationCurve jumpCurve;
+    [SerializeField] private float jumpMultiplayer;
+    [SerializeField] private KeyCode jumpKey;
 
-    bool isGrounded = true;
-    Rigidbody rb;
+    private bool isJumping;
 
-    // Start is called before the first frame update
-    void Start()
+    private CharacterController characterController;
+
+
+
+    private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        characterController = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (isGrounded)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                isGrounded = false;
-                rb.AddForce(Vector3.up * jumpForce);
-            }
-        }
-        float rotationVar = Input.GetAxis("Horizontal");
-        float forward = Input.GetAxis("Vertical");
-
-        Vector3 moveVector = forward * transform.forward;
-        Vector3 dirVector = rotationVar * transform.right;
-
-        transform.position = Vector3.Lerp(this.transform.position, this.transform.position + moveVector + dirVector, Time.deltaTime * moveSpeed);
-
-
-
-
-
-
+        MovePlayer();
     }
 
-    void OnCollisionEnter(Collision col)
+    private void MovePlayer()
     {
-        Debug.Log("Entered");
-        if (col.transform.tag == "Ground")
+        float vertInput = Input.GetAxis("Vertical");
+        float horizInput = Input.GetAxis("Horizontal");
+
+        Vector3 vertMove = transform.forward * vertInput;
+        Vector3 horizMove = transform.right * horizInput;
+
+        characterController.SimpleMove(Vector3.ClampMagnitude(vertMove + horizMove, 1f) * moveSpeed);
+
+        JumpInput();
+    }
+
+    private void JumpInput()
+    {
+        if (Input.GetKeyDown(jumpKey) && !isJumping)
         {
-            Debug.Log("Entered2");
-            isGrounded = true;
+            isJumping = true;
+            StartCoroutine(JumpEvent());
         }
+    }
+
+    private IEnumerator JumpEvent()
+    {
+        float timeInAir = 0f;
+        characterController.slopeLimit = 90f;
+
+        do
+        {
+            float jumpForce = jumpCurve.Evaluate(timeInAir);
+            characterController.Move(Vector3.up * jumpForce * jumpMultiplayer * Time.deltaTime);
+            timeInAir += Time.deltaTime;
+            yield return null;
+        } while (!characterController.isGrounded && characterController.collisionFlags != CollisionFlags.CollidedAbove);
+
+        isJumping = false;
+        characterController.slopeLimit = 45f;
     }
 }
