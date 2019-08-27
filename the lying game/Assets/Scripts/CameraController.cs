@@ -11,19 +11,15 @@ public class CameraController : MonoBehaviour
     private const string mouseXAxis = "Mouse X";
     private const string mouseYAxis = "Mouse Y";
 
-    public bool canUpd = true;
-
     private float xAxisClamp = 0f;
     
     private void Awake()
     {
         LockCursor();
-        
     }
 
     private void Update()
     {
-        if(canUpd)
         RotateCamera();
     }
 
