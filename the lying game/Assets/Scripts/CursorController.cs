@@ -13,15 +13,20 @@ public class CursorController : MonoBehaviour
     [SerializeField] private Color resizeColor;
     [SerializeField] private Color defaultColor;
 
+    public bool canUpd = true;
+
     private bool isGrabbed = false;
     private Rigidbody grabbedObj;
 
     void Update()
     {
-        CheckIfInteractable();
+        if (canUpd)
+        {
+            CheckIfInteractable();
 
-        //to remove any forces from our object while holding it
-        if (isGrabbed) StopItem();
+            //to remove any forces from our object while holding it
+            if (isGrabbed) StopItem();
+        }
     }
 
     private void CheckIfInteractable()
