@@ -2263,6 +2263,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3987935234124887641}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &678254280 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3987935233451909278, guid: 715e1e38a47e6904fafff192cb51ef28,
+    type: 3}
+  m_PrefabInstance: {fileID: 3987935234124887641}
+  m_PrefabAsset: {fileID: 0}
 --- !u!108 &678254282
 Light:
   m_ObjectHideFlags: 0
@@ -12886,8 +12892,78 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3987935233451909279, guid: 715e1e38a47e6904fafff192cb51ef28,
         type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987935233451909279, guid: 715e1e38a47e6904fafff192cb51ef28,
+        type: 3}
       propertyPath: jumpForce
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987935233451909279, guid: 715e1e38a47e6904fafff192cb51ef28,
+        type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].time
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987935233451909279, guid: 715e1e38a47e6904fafff192cb51ef28,
+        type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].value
+      value: -0.000010095537
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987935233451909279, guid: 715e1e38a47e6904fafff192cb51ef28,
+        type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[0].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987935233451909279, guid: 715e1e38a47e6904fafff192cb51ef28,
+        type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987935233451909279, guid: 715e1e38a47e6904fafff192cb51ef28,
+        type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987935233451909279, guid: 715e1e38a47e6904fafff192cb51ef28,
+        type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987935233451909279, guid: 715e1e38a47e6904fafff192cb51ef28,
+        type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987935233451909279, guid: 715e1e38a47e6904fafff192cb51ef28,
+        type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987935233451909279, guid: 715e1e38a47e6904fafff192cb51ef28,
+        type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987935233451909279, guid: 715e1e38a47e6904fafff192cb51ef28,
+        type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987935233451909279, guid: 715e1e38a47e6904fafff192cb51ef28,
+        type: 3}
+      propertyPath: jumpMultiplayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987935233451909279, guid: 715e1e38a47e6904fafff192cb51ef28,
+        type: 3}
+      propertyPath: jumpKey
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987935233451909279, guid: 715e1e38a47e6904fafff192cb51ef28,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3987935233451909265, guid: 715e1e38a47e6904fafff192cb51ef28,
         type: 3}
@@ -12958,6 +13034,21 @@ PrefabInstance:
         type: 3}
       propertyPath: resizeColor.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397529100757213292, guid: 715e1e38a47e6904fafff192cb51ef28,
+        type: 3}
+      propertyPath: interactKey
+      value: 101
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377386565076167963, guid: 715e1e38a47e6904fafff192cb51ef28,
+        type: 3}
+      propertyPath: playerBody
+      value: 
+      objectReference: {fileID: 678254280}
+    - target: {fileID: 8377386565076167963, guid: 715e1e38a47e6904fafff192cb51ef28,
+        type: 3}
+      propertyPath: mouseSensivity
+      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 715e1e38a47e6904fafff192cb51ef28, type: 3}
