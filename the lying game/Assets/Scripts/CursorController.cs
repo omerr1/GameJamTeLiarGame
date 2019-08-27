@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CursorController : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class CursorController : MonoBehaviour
 
     [SerializeField] private Transform cursor;
     [SerializeField] private float resizeCursor;
+    [SerializeField] private Color resizeColor;
+    [SerializeField] private Color defaultColor;
 
     private bool isGrabbed = false;
     private Rigidbody grabbedObj;
@@ -23,24 +26,24 @@ public class CursorController : MonoBehaviour
 
     private void CheckIfInteractable()
     {
-        
+
         RaycastHit hitInfo;
 
         //Will check if we looking at some object in interactDistance
-        if (Physics.Raycast(transform.position,transform.forward,out hitInfo, interactDistance))
+        if (Physics.Raycast(transform.position, transform.forward, out hitInfo, interactDistance))
         {
             //Every object with we can interact with need to have InteractiveObj component
             InteractiveObj interactive = hitInfo.collider.gameObject.GetComponent<InteractiveObj>();
 
-            if(interactive != null)
+            if (interactive != null)
             {
                 //Show to the player that he is looking at an interactive object
-                if(cursor != null) cursor.localScale = new Vector3(resizeCursor + 1f, resizeCursor + 1f);
+                if (cursor != null) EnlargeCursor() ;
 
                 //Check if we can grab it
                 if (interactive.isGrabbable)
                 {
-                    
+
                     if (!isGrabbed && Input.GetKeyDown(interactKey))
                     {
                         PickUpItem(hitInfo.collider.gameObject.GetComponent<Rigidbody>());
@@ -51,15 +54,19 @@ public class CursorController : MonoBehaviour
                     }
                 }
 
-                if(Input.GetKeyDown(interactKey)) interactive.Interac();
+                if (Input.GetKeyDown(interactKey)) interactive.Interac();
 
-            }else if (isGrabbed)
+            } else if (isGrabbed)
             {
                 //If we can't see the grabbable object(and we see another interactive object) but we still hold it we need to drop it
                 DropItem();
             }
+            else
+            {
+                CursorDefault();
+            }
 
-        }else if (isGrabbed)
+        } else if (isGrabbed)
         {
             //If we can't see the grabbable object(and we see the non-interactive object) but we still hold it we need to drop it
             DropItem();
@@ -67,20 +74,32 @@ public class CursorController : MonoBehaviour
         else
         {
             //If we don't see any interactive objects 
-            if (cursor != null) cursor.localScale = Vector3.one;
+            if (cursor != null) CursorDefault();
         }
 
     }
-
+    private void EnlargeCursor()
+    {
+        cursor.localScale = new Vector3(resizeCursor + 1f, resizeCursor + 1f);
+        cursor.GetComponent<Image>().color = resizeColor;
+    }
+    private void CursorDefault()
+    {
+        cursor.localScale = Vector3.one;
+        cursor.GetComponent<Image>().color = defaultColor ;
+    }
     private void PickUpItem(Rigidbody rb) {
         //Check if the game object has Rigidbody
         if (rb != null)
         {
+            
             isGrabbed = true;
             grabbedObj = rb;
             StopItem(); 
             grabbedObj.useGravity = false; // to we can hold it
+            //grabbedObj.mass = 100000f; // So it would win in colisions.
             grabbedObj.transform.SetParent(transform); // to follow out position
+
         }
     }
     private void DropItem() {
@@ -89,6 +108,7 @@ public class CursorController : MonoBehaviour
         {
             StopItem();
             //Set all vars back to normal
+            //grabbedObj.mass = 1;
             grabbedObj.useGravity = true;
             grabbedObj.transform.parent = null; ;
         }

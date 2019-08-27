@@ -26,6 +26,7 @@ public class CameraController : MonoBehaviour
     private void LockCursor()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = true;
     }
 
     private void RotateCamera()
@@ -34,6 +35,8 @@ public class CameraController : MonoBehaviour
         float mouseX = Input.GetAxis(mouseXAxis) * mouseSensivity * Time.deltaTime;
         float mouseY = Input.GetAxis(mouseYAxis) * mouseSensivity * Time.deltaTime;
 
+        //Why do we need it ??
+        /*
         xAxisClamp += mouseY;
         if(xAxisClamp > 90f)
         {
@@ -45,7 +48,7 @@ public class CameraController : MonoBehaviour
             xAxisClamp = -90;
             mouseY = 0;
         }
-       
+       */
 
         transform.Rotate(Vector3.left * mouseY);
         playerBody.Rotate(Vector3.up * mouseX);
