@@ -9,6 +9,7 @@ TagManager:
   - Row
   - Manager
   - Phone
+  - Interactive
   layers:
   - Default
   - TransparentFX
