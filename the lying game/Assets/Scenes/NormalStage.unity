@@ -14473,6 +14473,7 @@ PrefabInstance:
       value: 0.365
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 6397529100757213292, guid: 715e1e38a47e6904fafff192cb51ef28,
         type: 3}
       propertyPath: cursor
@@ -14538,6 +14539,8 @@ PrefabInstance:
       propertyPath: mouseSensivity
       value: 300
       objectReference: {fileID: 0}
+=======
+>>>>>>> parent of bed8125... Apps Control
 =======
 >>>>>>> parent of bed8125... Apps Control
     m_RemovedComponents: []
